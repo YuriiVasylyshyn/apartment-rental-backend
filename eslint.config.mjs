@@ -34,7 +34,12 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
       '@typescript-eslint/no-unsafe-argument': 'warn',
-      'simple-import-sort/imports': 'error',
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [['^\\u0000'], ['^node:'], ['^@?\\w', '^@nest?\\w'], ['^'], ['@app?\\w', '^\\.'], ['^.+\\u0000$']],
+        },
+      ],
     },
   },
 );
