@@ -5,11 +5,13 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 import { Config, configParser, configSchema } from '@app/config';
+import { ApartmentModule } from '../apartment/apartment.module';
 import { AppController } from './controllers/app.controller';
 import { AppServiceImpl } from './services/app.service';
 import { AppService } from './services/app.service.abstract';
 
 const appService = { provide: AppService, useClass: AppServiceImpl };
+const internalModules = [ApartmentModule];
 
 @Module({
   imports: [
@@ -36,6 +38,8 @@ const appService = { provide: AppService, useClass: AppServiceImpl };
         } as TypeOrmModuleOptions;
       },
     }),
+
+    ...internalModules,
   ],
   controllers: [AppController],
   providers: [appService],
