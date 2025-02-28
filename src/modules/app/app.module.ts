@@ -10,8 +10,9 @@ import { AppController } from './controllers/app.controller';
 import { AppServiceImpl } from './services/app.service';
 import { AppService } from './services/app.service.abstract';
 
+export const internalModules = [ApartmentModule];
+
 const appService = { provide: AppService, useClass: AppServiceImpl };
-const internalModules = [ApartmentModule];
 
 @Module({
   imports: [
