@@ -8,4 +8,9 @@ export interface Config {
     secret: string;
     accessTokenExpirationTimeSeconds: number;
   };
+  aws: {
+    accessKey?: string;
+    secretKey?: string;
+    region?: string;
+  };
 }

@@ -41,9 +41,10 @@ export class AuthServiceImpl implements AuthService {
     const { email, password } = data;
     const user = await this._userService.findOneByEmail(email);
 
-    if (!user.isRegistrationCompleted) {
-      throw new ForbiddenException('Confirm your email first');
-    }
+    // TODO: Uncomment this after implementing email sending service
+    // if (!user.isRegistrationCompleted) {
+    //   throw new ForbiddenException('Confirm your email first');
+    // }
 
     const isPasswordValid = await EncryptUtility.compareHash(password, user.password);
     if (!isPasswordValid) {
