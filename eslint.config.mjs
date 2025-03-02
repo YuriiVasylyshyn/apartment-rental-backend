@@ -40,6 +40,13 @@ export default tseslint.config(
           groups: [['^\\u0000'], ['^node:'], ['^@?\\w', '^@nest?\\w'], ['^'], ['@app?\\w', '^\\.'], ['^.+\\u0000$']],
         },
       ],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
     },
   },
 );
