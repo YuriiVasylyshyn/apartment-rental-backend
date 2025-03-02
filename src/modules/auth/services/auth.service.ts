@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 
 import { Config } from '@app/config';
-import { EncryptUtility } from '@app/utils/encrypt.utility';
+import { EncryptUtility } from '../../../utils/encrypt.utility';
 import { UserService } from '../../user/services/user.service.abstract';
 import { SignInRequestDto } from '../dtos/req/sign-in.request.dto';
 import { SignUpRequestDto } from '../dtos/req/sign-up.request.dto';

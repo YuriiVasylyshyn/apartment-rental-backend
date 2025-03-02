@@ -2,6 +2,9 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript project for managing apartment rentals.
 
+DB used - PostgreSQL
+ORM - TypeORM
+
 ## Project setup
 
 ```bash
@@ -27,3 +30,7 @@ $ npm run start:prod
 # test coverage
 $ npm run test:cov
 ```
+
+## Swager docs
+
+GET .../docs
