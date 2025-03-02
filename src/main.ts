@@ -1,3 +1,5 @@
+import * as cookieParser from 'cookie-parser';
+import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -10,16 +12,17 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   const config = app.get<ConfigService<Config, true>>(ConfigService);
 
+  app.useGlobalPipes(new ValidationPipe());
+
   const privateDocument = SwaggerModule.createDocument(
     app,
-    new DocumentBuilder()
-      .setTitle(`${name} - API Docs`)
-      .setVersion(version as string)
-      .build(),
+    new DocumentBuilder().setTitle(`${name} - API Docs`).setVersion(version).build(),
     {
       include: [...internalModules, AppModule],
     },
   );
+
+  app.use(cookieParser());
 
   SwaggerModule.setup('docs', app, privateDocument, {
     swaggerOptions: {

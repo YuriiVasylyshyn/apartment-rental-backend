@@ -22,11 +22,14 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: true, length: 255, unique: true })
   public email!: string | null;
 
-  @Column({ type: 'text', nullable: true })
-  public password!: string | null;
+  @Column({ type: 'text', nullable: false })
+  public password!: string;
 
   @Column({ type: 'enum', enum: Role, nullable: false })
   public role!: Role;
+
+  @Column({ type: 'boolean', default: false })
+  public isRegistrationCompleted!: boolean;
 
   @CreateDateColumn()
   public createdAt!: Date;
