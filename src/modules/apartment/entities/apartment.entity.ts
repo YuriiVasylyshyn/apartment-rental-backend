@@ -51,10 +51,10 @@ export class ApartmentEntity extends BaseEntity {
   @Column({ type: 'uuid' })
   public ownerId!: string;
 
-  @Column({ type: 'uuid' })
-  public tenantId!: string;
+  @Column({ type: 'uuid', nullable: true })
+  public tenantId!: string | null;
 
-  @ManyToOne(() => UserEntity, owner => owner.ownApartments)
+  @ManyToOne(() => UserEntity, owner => owner.ownApartments, { onDelete: 'CASCADE' })
   public owner!: UserEntity;
 
   @ManyToOne(() => UserEntity, tenant => tenant.rentedApartments)
