@@ -1,7 +1,7 @@
-import { User } from 'src/decorators/user.decorator';
-import { Role } from 'src/modules/user/enums/role.enum';
 import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+
+import { User } from '../decorators/user.decorator';
 
 import type { CanActivate, ExecutionContext } from '@nestjs/common';
 import type { Request } from 'express';
@@ -13,7 +13,6 @@ export class RoleAuthGuard implements CanActivate {
   public canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest<Request & { user: User }>();
     const user = request.user;
-    const userRole = user.role as Role;
 
     if (!user) {
       throw new UnauthorizedException();
@@ -25,7 +24,7 @@ export class RoleAuthGuard implements CanActivate {
       return true;
     }
 
-    if (!roles.includes(userRole)) {
+    if (!roles.includes(user.role)) {
       throw new ForbiddenException();
     }
 
