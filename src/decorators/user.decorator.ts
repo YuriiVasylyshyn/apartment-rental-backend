@@ -6,8 +6,8 @@ import type { ExecutionContext } from '@nestjs/common';
 import type { Request } from 'express';
 
 export interface User {
-  id?: string;
-  role?: Role;
+  id: string;
+  role: Role;
 
   [key: string]: unknown;
 }
